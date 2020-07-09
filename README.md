@@ -105,4 +105,4 @@ Copyright (c) 2016 stripcode
 Resolution here 1.05&#181;m/pixel:  
 ![microscope image](microscope.xyz_steppers.yt.jpg)  
 
-![xy sliding-table plus z stepper](microscope.xyz_steppers.yt.jpg)
+![xy sliding-table plus z stepper](20200708_201159.jpg)
