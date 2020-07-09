@@ -28,7 +28,7 @@ halfStepSequence = (
 
 class StepperMotor:
 
-  def __init__(self, pi, pin1, pin2, pin3, pin4, sequence = halfStepSequence, delayAfterStep = 0.0025):
+  def __init__(self, pi, pin1, pin2, pin3, pin4, sequence = halfStepSequence, delayAfterStep = 0.0025, pos = 0):
     if not isinstance(pi, pigpio.pi):
       raise TypeError("Is not pigpio.pi instance.")
     pi.set_mode(pin1, pigpio.OUTPUT)
@@ -42,16 +42,17 @@ class StepperMotor:
     self.pi = pi
     self.delayAfterStep = delayAfterStep
     self.deque = deque(sequence)
+    self.deque.rotate(pos % len(sequence))
 
 
 
-  def doСounterclockwiseStep(self):
+  def doCounterclockwiseStep(self):
     self.deque.rotate(-1)
     self.doStepAndDelay(self.deque[0])
 
 
 
-  def doСlockwiseStep(self):
+  def doClockwiseStep(self):
     self.deque.rotate(1)
     self.doStepAndDelay(self.deque[0])
 
