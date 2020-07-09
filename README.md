@@ -9,12 +9,12 @@ motor(pi, pin1, pin2, pin3, pin4, [sequence], [delayAfterStep])
 * pin1, pin2, pin3, pin4 - pins has been connected to the driver
 * sequence - halfStepSequence or fullStepSequence. Default sequence = halfStepSequence
 * delayAfterStep - Delay after step. Default delayAfterStep = 0.0025 second
-* pos - last position (allows to start exactly where stopped)
+* pos - last position (allows to start exactly where stopped). Default 0.
 
 ## Examples
 I connect driver to 6, 13, 19, 26 pins. I use 28BYJ-48 stepper motor (4096 steps in halfStepSequence, 2048 steps in fullStepSequence) and ULN2003 driver.
 
-[keys_xyz.py](keys_xyz.py) is example to control x, y and z stepper motors (of microscope), with output of current position. Allows for starting exactly where stopped. Keys LEFT/RIGHT/UP/DOWN/NPAGE/PPAGE, and END ends script.
+[keys_xyz.py](keys_xyz.py) is example to control x, y and z stepper motors (of microscope), with output of current position. Allows for starting exactly where stopped. Keys LEFT/RIGHT/UP/DOWN/NPAGE/PPAGE, and END ends script. See images at bottom.
 
 ### Clockwise rotation to 180 degrees
 ```python
@@ -24,7 +24,7 @@ from PigpioStepperMotor import StepperMotor
 pi = pigpio.pi()
 motor = StepperMotor(pi, 6, 13, 19, 26)
 for i in range(2048):
-  motor.doСlockwiseStep()
+  motor.doClockwiseStep()
 ```
 
 
@@ -37,7 +37,7 @@ from PigpioStepperMotor import StepperMotor
 pi = pigpio.pi()
 motor = StepperMotor(pi, 6, 13, 19, 26)
 for i in range(2048):
-  motor.doСounterclockwiseStep()
+  motor.doCounterclockwiseStep()
 ```
 
 
@@ -50,7 +50,7 @@ from PigpioStepperMotor import StepperMotor, fullStepSequence
 pi = pigpio.pi()
 motor = StepperMotor(pi, 6, 13, 19, 26, sequence = fullStepSequence)
 for i in range(1024):
-  motor.doСlockwiseStep()
+  motor.doClockwiseStep()
 ```
 
 
@@ -63,7 +63,7 @@ from PigpioStepperMotor import StepperMotor
 pi = pigpio.pi()
 motor = StepperMotor(pi, 6, 13, 19, 26,  delayAfterStep = 0.05)
 for i in range(2048):
-  motor.doСlockwiseStep()
+  motor.doClockwiseStep()
 ```
 
 
@@ -85,9 +85,9 @@ try:
   while True:
     key = stdscr.getkey()
     if key == "KEY_LEFT":
-      motor.doСlockwiseStep()
+      motor.doClockwiseStep()
     elif key == "KEY_RIGHT":
-      motor.doСounterclockwiseStep()
+      motor.doCounterclockwiseStep()
 except Exception as e:
   print(e)
 finally:
@@ -98,3 +98,11 @@ finally:
 MIT License
 
 Copyright (c) 2016 stripcode
+
+## xyz microscope
+
+[forum posting](https://forum.arduino.cc/index.php?topic=691123.msg4669416#msg4669416)  
+Resolution here 1.05&#181;m/pixel:  
+![microscope image](microscope.xyz_steppers.yt.jpg)  
+
+![xy sliding-table plus z stepper](microscope.xyz_steppers.yt.jpg)
