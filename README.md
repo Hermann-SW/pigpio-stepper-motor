@@ -14,7 +14,7 @@ motor(pi, pin1, pin2, pin3, pin4, [sequence], [delayAfterStep])
 ## Examples
 I connect driver to 6, 13, 19, 26 pins. I use 28BYJ-48 stepper motor (4096 steps in halfStepSequence, 2048 steps in fullStepSequence) and ULN2003 driver.
 
-[keys_xyz.py](keys_xyz.py) is example to control x, y and z stepper motors (of microscope), with output of current position. Allows for starting exactly where stopped. Keys LEFT/RIGHT/UP/DOWN/NPAGE/PPAGE, and END ends script. See images at bottom.
+[keys_xyz.py](keys_xyz.py) is example to control x, y and z stepper motors (of microscope), with output of current position. Allows for starting exactly where stopped, and not incorrectly move up to 35µm (7 half-steps) wrong on first step in any of the three dimensions. Keys LEFT/RIGHT/UP/DOWN/NPAGE/PPAGE, and END ends script. See images at bottom.
 
 ### Clockwise rotation to 180 degrees
 ```python
